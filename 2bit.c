@@ -19,7 +19,10 @@ int main(int argc, char** argv){
 		signed short inc[4];
 		while(fread(inc,1,8,in)){
 			unsigned char temp;
-			temp=bit2_encode(&ctx,inc[0]) | bit2_encode(&ctx,inc[1]) << 2 | bit2_encode(&ctx,inc[2]) << 4 | bit2_encode(&ctx,inc[3]) << 6;
+			temp = bit2_encode(&ctx,inc[0]);
+			temp |= bit2_encode(&ctx,inc[1]) << 2;
+			temp |= bit2_encode(&ctx,inc[2]) << 4;
+			temp |= bit2_encode(&ctx,inc[3]) << 6;
 			fwrite(&temp,1,1,out);
 		}
 	}else if(!strcmp(argv[1],"d")){

@@ -19,7 +19,8 @@ int main(int argc, char** argv){
 		signed short inc[2];
 		while(fread(inc,1,4,in)){
 			unsigned char temp;
-			temp=ima_encode(&ctx,inc[0]) | ima_encode(&ctx,inc[1]) << 4;
+			temp = ima_encode(&ctx,inc[0]);
+			temp |= ima_encode(&ctx,inc[1]) << 4;
 			fwrite(&temp,1,1,out);
 		}
 	}else if(!strcmp(argv[1],"d")){
